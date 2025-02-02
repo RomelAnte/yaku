@@ -37,6 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Aplicaciones.asistencia',
+    'Aplicaciones.comunicados',
+    'Aplicaciones.configuracion',
+    'Aplicaciones.eventos',
+    'Aplicaciones.facturacion',
+    'Aplicaciones.medidores',
+    'Aplicaciones.socios',
+    'Aplicaciones.tarifas',
+    'Aplicaciones.usuarios',
 ]
 
 MIDDLEWARE = [
@@ -75,10 +84,18 @@ WSGI_APPLICATION = 'yaku.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'aplicaci_yaku3',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',  # O la IP del servidor de MySQL
+        'PORT': '3306',  # Puerto de MySQL (3306 por defecto)
+        'OPTIONS': {
+            'charset': 'utf8mb4',  # Permite caracteres especiales
+        },
     }
 }
+
 
 
 # Password validation
