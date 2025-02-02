@@ -1,7 +1,7 @@
 from django.db import models
-from socios.models import Socio
-from medidores.models import Lectura
-from facturacion.models import Recaudacion
+from Aplicaciones.socios.models import Socio
+from Aplicaciones.medidores.models import Lectura
+from Aplicaciones.facturacion.models import Recaudacion
 
 # Create your models here.
 class Consumo (models.Model):

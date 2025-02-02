@@ -1,6 +1,6 @@
 from django.db import models
-from usuarios.models import Usuario
-from medidores.models import Medidor
+from Aplicaciones.usuarios.models import Usuario
+from Aplicaciones.medidores.models import Medidor
 
 # Create your models here.
 class Socio (models.Model):
