@@ -1,6 +1,6 @@
 from django.db import models
-from eventos.models import Evento
-from socios.models import Socio
+from Aplicaciones.eventos.models import Evento
+from Aplicaciones.socios.models import Socio
 
 # Create your models here.
 class Asistencia(models.Model):
