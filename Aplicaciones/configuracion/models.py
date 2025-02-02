@@ -6,7 +6,7 @@ class Configuracion(models.Model):
     id_con 	= models.AutoField(primary_key = True)
     nombre_con 	= models.CharField(max_length = 250)
     ruc_con = models.CharField(max_length = 13)	
-    logo_con = models.CharField(max_length = 200)	
+    logo_con = models.FieldFile(upload = 'configuraciones', max_length = 200)
     telefono_con = models.CharField(max_length = 10) 	
     direccion_con = models.CharField(max_length = 50)	
     email_con = models.CharField(max_length = 50)	
