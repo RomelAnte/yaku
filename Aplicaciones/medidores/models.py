@@ -1,8 +1,8 @@
 from django.db import models
-from configuracion.models import Ruta
-from tarifas.models import Tarifa
-from socios.models import Historial_propietario
-from facturacion.models import Consumo
+from Aplicaciones.configuracion.models import Ruta
+from Aplicaciones.tarifas.models import Tarifa
+from Aplicaciones.socios.models import Historial_propietario
+from Aplicaciones.facturacion.models import Consumo
 
 # Create your models here.
 class Medidor (models.Model):
