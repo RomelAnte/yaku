@@ -17,3 +17,9 @@ class Configuracion(models.Model):
     actualizacion_con = models.DateTimeField()	
     anio_inicial_con = models.IntegerField()	
     mes_inicial_con = models.CharField(max_length=25)
+    
+class Ruta(models.Model):
+    id_rut = models.AutoField(primary_key=True)	
+    nombre_rut = models.CharField(max_length=500)	
+    descripcion_rut = models.TextField() 	
+    estado_rut 	= models.CharField(max_length=25)
