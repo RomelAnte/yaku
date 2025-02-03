@@ -1,6 +1,6 @@
 from django.db import models
-from Aplicaciones.medidores.models import Lectura
-from Aplicaciones.facturacion.models import Recaudacion
+#from Aplicaciones.medidores.models import Lectura
+#from Aplicaciones.socios.models import Socio
 
 # Create your models here.
 class Consumo (models.Model):
@@ -23,7 +23,7 @@ class Recaudacion (models.Model):
     clave_acceso_rec = models.CharField(max_length=500)	
     email_rec = models.CharField(max_length=500)	
     observacion_rec = models.CharField(max_length=500)	
-    fk_id_soc = models.ForeignKey(Socio, on_delete=models.CASCADE)	
+    #fk_id_soc = models.ForeignKey(Socio, on_delete=models.CASCADE)	
     nombre_rec = models.CharField(max_length=500)	
     identificacion_rec = models.CharField(max_length=15) 	
     direccion_rec = models.CharField(max_length=500)	
@@ -44,7 +44,7 @@ class Impuesto (models.Model):
     
 class Detalle(models.Model):
     id_det = models.AutoField(primary_key=True)
-    fk_id_lec = models.ForeignKey(Lectura, on_delete=models.CASCADE)
+    #fk_id_lec = models.ForeignKey(Lectura, on_delete=models.CASCADE)
     fk_id_rec = models.ForeignKey(Recaudacion, on_delete=models.CASCADE)
     cantidad_det = models.DecimalField(max_digits=10, decimal_places=2)
     detalle_det = models.TextField()
