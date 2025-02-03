@@ -3,7 +3,7 @@ from Aplicaciones.usuarios.models import Usuario
 from Aplicaciones.medidores.models import Medidor
 
 # Create your models here.
-class Socio (models.Model):
+class Socio(models.Model):
     id_soc = models.AutoField(primary_key=True)
     tipo_soc = models.CharField(max_length=50)
     identificacion_soc = models.CharField(max_length=13)	
@@ -19,7 +19,7 @@ class Socio (models.Model):
     fk_id_usu = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     estado_soc = models.BooleanField()
     
-class Historial_propietario (models.Model):
+class Historial_propietario(models.Model):
     id_his = models.AutoField(primary_key=True)	
     fk_id_med = models.ForeignKey(Medidor, on_delete=models.CASCADE)	
     fk_id_soc = models.ForeignKey(Socio, on_delete=models.CASCADE)	

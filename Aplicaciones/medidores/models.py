@@ -1,8 +1,8 @@
 from django.db import models
 from Aplicaciones.configuracion.models import Ruta
 from Aplicaciones.tarifas.models import Tarifa
-from Aplicaciones.socios.models import Historial_propietario
 from Aplicaciones.facturacion.models import Consumo
+#from Aplicaciones.socios.models import Historial_propietario
 
 # Create your models here.
 class Medidor (models.Model):
@@ -28,5 +28,5 @@ class Lectura(models.Model):
     lectura_actual_lec = models.DecimalField(max_digits=10, decimal_places=2)	
     fecha_creacion_lec = models.DateTimeField()
     fecha_actualizacion_lec = models.DateTimeField()
-    fk_id_his = models.ForeignKey(Historial_propietario, on_delete=models.CASCADE)
+    #fk_id_his = models.ForeignKey(Historial_propietario, on_delete=models.CASCADE)
     fk_id_consumo = models.ForeignKey(Consumo, on_delete=models.CASCADE)
