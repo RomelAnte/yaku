@@ -1,5 +1,4 @@
 from django.db import models
-from Aplicaciones.socios.models import Socio
 from Aplicaciones.medidores.models import Lectura
 from Aplicaciones.facturacion.models import Recaudacion
 
