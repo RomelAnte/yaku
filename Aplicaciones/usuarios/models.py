@@ -9,6 +9,10 @@ class Perfil (models.Model):
     creacion_per = models.DateTimeField()	
     actualizacion_per = models.DateTimeField() 	
 
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'perfil'  # Nombre exacto de la tabla en MySQL
+
 class Usuario (models.Model):
     id_usu = models.AutoField(primary_key=True)	
     apellido_usu = models.CharField(150) 	
@@ -17,4 +21,8 @@ class Usuario (models.Model):
     password_usu = models.CharField(500) 	
     estado_usu = models.CharField(50) 	
     fk_id_per = models.ForeignKey(Perfil, on_delete=models.CASCADE)
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'usuario'  # Nombre exacto de la tabla en MySQL
     

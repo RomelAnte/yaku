@@ -14,4 +14,8 @@ class Asistencia(models.Model):
     creacion_asi = models.DateTimeField()	
     actualizacion_asi = models.DateTimeField()
     
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'asistencia'  # Nombre exacto de la tabla en MySQL
+    
     

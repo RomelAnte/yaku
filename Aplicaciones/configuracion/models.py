@@ -18,8 +18,16 @@ class Configuracion(models.Model):
     anio_inicial_con = models.IntegerField()	
     mes_inicial_con = models.CharField(max_length=25)
     
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'configuracion'  # Nombre exacto de la tabla en MySQL
+    
 class Ruta(models.Model):
     id_rut = models.AutoField(primary_key=True)	
     nombre_rut = models.CharField(max_length=500)	
     descripcion_rut = models.TextField() 	
     estado_rut 	= models.CharField(max_length=25)
+    
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'ruta'  # Nombre exacto de la tabla en MySQL

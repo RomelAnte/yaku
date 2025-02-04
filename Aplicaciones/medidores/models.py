@@ -16,6 +16,10 @@ class Medidor (models.Model):
     creacion_med = models.DateTimeField()
     actualizacion_med = models.DateTimeField()
     lectura_inicial_med = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'medidor'  # Nombre exacto de la tabla en MySQL
     
 class Consumo (models.Model):
     id_consumo = models.AutoField(primary_key=True)
@@ -26,4 +30,8 @@ class Consumo (models.Model):
     fecha_actualizacion_consumo = models.DateTimeField()	
     numero_mes_consumo = models.IntegerField()	
     fecha_vencimiento_consumo = models.DateField()    
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'consumo'  # Nombre exacto de la tabla en MySQL
     

@@ -7,3 +7,7 @@ class Comunicado (models.Model):
     mensaje_com = models.CharField(max_length=200)
     actualizacion_com = models.DateTimeField()
     creacion_com = models.DateTimeField()
+    
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'comunicado'  # Nombre exacto de la tabla en MySQL

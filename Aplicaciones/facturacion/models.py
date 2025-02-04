@@ -11,3 +11,7 @@ class Impuesto (models.Model):
     creacion_imp = models.DateTimeField()
     actualizacion_imp = models.DateTimeField()
     
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'impuesto'  # Nombre exacto de la tabla en MySQL
+    

@@ -18,6 +18,10 @@ class Socio(models.Model):
     discapacidad_soc = models.BooleanField() 	
     fk_id_usu = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     estado_soc = models.BooleanField()
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'socio'  # Nombre exacto de la tabla en MySQL
     
 class Historial_propietario(models.Model):
     id_his = models.AutoField(primary_key=True)	
@@ -29,6 +33,10 @@ class Historial_propietario(models.Model):
     fecha_cambio_his = models.DateTimeField()
     creacion_his = models.DateTimeField()
     propietario_actual_his	= models.CharField(max_length=15)
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'historial_propietario'  # Nombre exacto de la tabla en MySQL
     
 class Lectura(models.Model):
     id_lec = models.AutoField(primary_key=True)
@@ -41,6 +49,10 @@ class Lectura(models.Model):
     fecha_actualizacion_lec = models.DateTimeField()
     fk_id_his = models.ForeignKey(Historial_propietario, on_delete=models.CASCADE)
     fk_id_consumo = models.ForeignKey(Consumo, on_delete=models.CASCADE)
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'lectura'  # Nombre exacto de la tabla en MySQL
     
 class Recaudacion (models.Model):
     id_rec = models.AutoField(primary_key=True)	
@@ -60,6 +72,10 @@ class Recaudacion (models.Model):
     fecha_emision_rec = models.DateTimeField() 	
     fecha_creacion_rec = models.DateTimeField()
     fecha_actualizacion_rec = models.DateTimeField()
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'recaudacion'  # Nombre exacto de la tabla en MySQL
     
 class Detalle(models.Model):
     id_det = models.AutoField(primary_key=True)
@@ -70,3 +86,7 @@ class Detalle(models.Model):
     valor_unitario_det = models.DecimalField(max_digits=10, decimal_places=2)
     subtotal_det = models.DecimalField(max_digits=10, decimal_places=2)
     iva_det = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'detalle'  # Nombre exacto de la tabla en MySQL
