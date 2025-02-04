@@ -10,6 +10,10 @@ class Tarifa (models.Model):
     tarifa_basica_tar = models.DecimalField(max_digits=10, decimal_places=2)	
     tarifa_excedente_tar = models.DecimalField(max_digits=10, decimal_places=2)
     valor_mora_tar = models.DecimalField(max_digits=10, decimal_places=2)
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'tarifa'  # Nombre exacto de la tabla en MySQL
     
 class Excedente (models.Model):
     id_ex = models.AutoField(primary_key=True)
@@ -19,3 +23,7 @@ class Excedente (models.Model):
     tarifa_ex = models.DecimalField(max_digits=10, decimal_places=2)
     fecha_actualizacion_ex = models.DateTimeField()
     fecha_creacion_ex = models.DateTimeField()
+
+    class Meta:
+        managed = False  # Django no tocará la tabla
+        db_table = 'excedente'  # Nombre exacto de la tabla en MySQL
