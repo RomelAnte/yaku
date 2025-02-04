@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'Aplicaciones.eventos',
     'Aplicaciones.tarifas',
     'Aplicaciones.usuarios',
-    'Aplicaciones.socios',
     'Aplicaciones.medidores',
-    'Aplicaciones.facturacion',
+    'Aplicaciones.socios',
     'Aplicaciones.asistencia',
+    'Aplicaciones.facturacion',
 ]
 
 MIDDLEWARE = [

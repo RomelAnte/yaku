@@ -14,3 +14,4 @@ class Asistencia(models.Model):
     creacion_asi = models.DateTimeField()	
     actualizacion_asi = models.DateTimeField()
     
+    
