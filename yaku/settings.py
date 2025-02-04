@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Aplicaciones.home',
     'Aplicaciones.comunicados',
     'Aplicaciones.configuracion',
     'Aplicaciones.eventos',
@@ -64,7 +65,7 @@ ROOT_URLCONF = 'yaku.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'Aplicaciones', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,7 +124,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'es-ec'
 
-TIME_ZONE = 'America/Gauyaquil'
+TIME_ZONE = 'America/Guayaquil'
 
 USE_I18N = True
 
