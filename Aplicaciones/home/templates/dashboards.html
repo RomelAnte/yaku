@@ -21,6 +21,15 @@
                 <div class="card-body"><canvas id="estado_lectura"></canvas></div>
             </div>   
         </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Total de consumo de agua mensual
+                </div>
+                <div class="card-body"><canvas id="total_consumo"></canvas></div>
+            </div>   
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -122,5 +131,60 @@
                 }
             }
         });
+    </script>
+    <script>
+        var ctx = document.getElementById('estado_lectura').getContext('2d');
+       
+        // Preparar los datos para Chart.js
+        var estado = [];
+        var cantidad = [];
+     
+        {% for item in estado_lectura %}
+            estado.push("{{ item.estado_lec }}");
+            cantidad.push("{{ item.cantidad }}");
+        {% endfor %}
+    
+    
+        var myChart = new Chart(ctx, {
+            type: 'doughnut', // Tipo de gráfico de barras (pie,line,bar,radar)
+            data: {
+                title: 'Variación del Consumo Promedio de Agua',
+                labels: estado, // Etiquetas del eje X (ACTIVO / INACTIVO)
+                datasets: [{
+                    label: 'Consumo Promedio',
+                    data: cantidad,
+                    backgroundColor: ['#36a2eb','#ff6384'],
+                    borderColor: ['#36a2eb','#ff6384'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Variación del Consumo Promedio de Agua',
+                    }
+                },
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Proveedores'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Estado'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+
     </script>
 {% endblock  %}

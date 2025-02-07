@@ -35,3 +35,21 @@ def estado_lectura():
         }
         for row in result
     ]
+    
+def total_consumo_mensual():
+    with connection.cursor() as cursor:
+        cursor.callproc('total_consumo_mensual')
+        result = cursor.fetchall()
+    
+    # Asegúrate de que result no esté vacío
+    if not result:
+        return []
+
+    return [
+        {
+            'mes': row[0],  
+            'anio': row[1],  
+            'total_consumos': row[1],  
+        }
+        for row in result
+    ]
