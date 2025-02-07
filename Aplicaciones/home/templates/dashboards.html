@@ -1,0 +1,126 @@
+{% extends "Plantilla.html" %}
+{% block body %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Dashboard</h1>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Variación del Consumo Promedio de Agua
+                </div>
+                <div class="card-body"><canvas id="promedio_consumo_mensual"></canvas></div>
+            </div>            
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    Variación del Consumo Promedio de Agua
+                </div>
+                <div class="card-body"><canvas id="estado_lectura"></canvas></div>
+            </div>   
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h4>KPI 1</h4>
+            <canvas id=""></canvas>
+        </div>
+        <div class="col-md-4">
+            <h4>KPI 2</h4>
+            <canvas id=""></canvas>
+        </div>
+        <div class="col-md-4">
+            <h4>KPI 3</h4>
+            <canvas id=""></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h4>KPI 1</h4>
+            <canvas id=""></canvas>
+        </div>
+        <div class="col-md-4">
+            <h4>KPI 2</h4>
+            <canvas id=""></canvas>
+        </div>
+        <div class="col-md-4">
+            <h4>KPI 3</h4>
+            <canvas id=""></canvas>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <h4>KPI 1</h4>
+            <canvas id=""></canvas>
+        </div>
+        <div class="col-md-4">
+            <h4>KPI 2</h4>
+            <canvas id=""></canvas>
+        </div>
+        <div class="col-md-4">
+            <h4>KPI 3</h4>
+            <canvas id=""></canvas>
+        </div>
+    </div>
+</div>
+    <script>
+        var ctx = document.getElementById('promedio_consumo_mensual').getContext('2d');
+       
+        // Preparar los datos para Chart.js
+        var mes = [];
+        var promedios = [];
+        let prom = ""
+     
+        {% for item in consumo_mensual %}
+            mes.push("{{ item.mes }} {{ item.anio }}");
+
+            prom = "{{ item.promedio }}";
+            prom = prom.replace(",", ".")
+            promDecim = Number(prom)
+
+            promedios.push(promDecim);
+        {% endfor %}
+    
+    
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico de barras (pie,line,bar,radar)
+            data: {
+                title: 'Variación del Consumo Promedio de Agua',
+                labels: mes, // Etiquetas del eje X (ACTIVO / INACTIVO)
+                datasets: [{
+                    label: 'Consumo Promedio',
+                    data: promedios,
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Variación del Consumo Promedio de Agua',
+                    }
+                },
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad de Proveedores'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Estado'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock  %}
