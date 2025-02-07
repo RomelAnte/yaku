@@ -3,20 +3,31 @@
 <div class="container-fluid px-4">
     <h1 class="mt-4">Dashboard</h1>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
-                    Variación del Consumo Promedio de Agua
+                    KPI 1
                 </div>
                 <div class="card-body"><canvas id="promedio_consumo_mensual"></canvas></div>
-            </div>            
+            </div>   
         </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    KPI 2
+                </div>
+                <div class="card-body"><canvas id="total_consumo"></canvas></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">        
         <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
-                    Variación del Consumo Promedio de Agua
+                    KPI 3
                 </div>
                 <div class="card-body"><canvas id="estado_lectura"></canvas></div>
             </div>   
@@ -25,52 +36,59 @@
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
-                    Total de consumo de agua mensual
+                    KPI 4
+                </div>
+                <div class="card-body"><canvas id="total_eventos"></canvas></div>
+            </div>  
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    KPI 5
                 </div>
                 <div class="card-body"><canvas id="total_consumo"></canvas></div>
-            </div>   
+            </div>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    KPI 6
+                </div>
+                <div class="card-body"><canvas id=""></canvas></div>
+            </div>  
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    KPI 7
+                </div>
+                <div class="card-body"><canvas id=""></canvas></div>
+            </div>            
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <h4>KPI 1</h4>
-            <canvas id=""></canvas>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    KPI 8
+                </div>
+                <div class="card-body"><canvas id=""></canvas></div>
+            </div>            
         </div>
         <div class="col-md-4">
-            <h4>KPI 2</h4>
-            <canvas id=""></canvas>
-        </div>
-        <div class="col-md-4">
-            <h4>KPI 3</h4>
-            <canvas id=""></canvas>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h4>KPI 1</h4>
-            <canvas id=""></canvas>
-        </div>
-        <div class="col-md-4">
-            <h4>KPI 2</h4>
-            <canvas id=""></canvas>
-        </div>
-        <div class="col-md-4">
-            <h4>KPI 3</h4>
-            <canvas id=""></canvas>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <h4>KPI 1</h4>
-            <canvas id=""></canvas>
-        </div>
-        <div class="col-md-4">
-            <h4>KPI 2</h4>
-            <canvas id=""></canvas>
-        </div>
-        <div class="col-md-4">
-            <h4>KPI 3</h4>
-            <canvas id=""></canvas>
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area me-1"></i>
+                    KPI 9
+                </div>
+                <div class="card-body"><canvas id=""></canvas></div>
+            </div>            
         </div>
     </div>
 </div>
@@ -119,13 +137,13 @@
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Cantidad de Proveedores'
+                            text: 'Consumo promedio de agua'
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Estado'
+                            text: 'Mes'
                         }
                     }
                 }
@@ -147,7 +165,6 @@
         var myChart = new Chart(ctx, {
             type: 'doughnut', // Tipo de gráfico de barras (pie,line,bar,radar)
             data: {
-                title: 'Variación del Consumo Promedio de Agua',
                 labels: estado, // Etiquetas del eje X (ACTIVO / INACTIVO)
                 datasets: [{
                     label: 'Consumo Promedio',
@@ -161,29 +178,13 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Variación del Consumo Promedio de Agua',
+                        text: 'Estado de Planillas',
                     }
                 },
                 responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Cantidad de Proveedores'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Estado'
-                        }
-                    }
-                }
             }
         });
     </script>
-
     <script>
         var ctx = document.getElementById('total_consumo').getContext('2d');
     
@@ -199,10 +200,10 @@
         var myChart = new Chart(ctx, {
             type: 'line', // Tipo de gráfico de barras (pie,line,bar,radar)
             data: {
-                title: 'Consumo de Agua Mesual',
+                title: 'Consumo Mesual de Agua',
                 labels: mes, // Etiquetas del eje X (ACTIVO / INACTIVO)
                 datasets: [{
-                    label: 'Consumo de Agua Mesual',
+                    label: 'Consumo de Agua',
                     data: total,
                     backgroundColor: '#4bc0c0',
                     borderColor: '#4bc0c0',
@@ -213,7 +214,7 @@
                 plugins: {
                     title: {
                         display: true,
-                        text: 'Consumo de Agua Mesual',
+                        text: 'Consumo Mesual de Agua',
                     }
                 },
                 responsive: true,
@@ -232,6 +233,44 @@
                         }
                     }
                 }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('total_eventos').getContext('2d');
+    
+        // Preparar los datos para Chart.js
+        var nombre = [];
+        var total = [];
+    
+        {% for item in total_eventos_tipo %}
+            nombre.push("{{ item.nombre_te }}");
+            total.push({{ item.NumeroEventos }});
+        {% endfor %}
+
+        console.log(nombre)
+
+        var myChart = new Chart(ctx, {
+            type: 'pie', // Tipo de gráfico de barras (pie,line,bar,radar)
+            data: {
+                title: 'Consumo de Agua Mesual',
+                labels: nombre, // Etiquetas del eje X (ACTIVO / INACTIVO)
+                datasets: [{
+                    label: 'Consumo de Agua Mesual',
+                    data: total,
+                    backgroundColor: ['#4bc0c0', '#f1c40f', '#4CAF50'],
+                    borderColor: ['#4bc0c0', '#f1c40f', '#4CAF50'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Consumo de Agua Mesual',
+                    }
+                },
+                responsive: true,
             }
         });
     </script>
