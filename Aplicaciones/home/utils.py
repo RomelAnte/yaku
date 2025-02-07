@@ -85,3 +85,36 @@ def total_socios_tipo():
         }
         for row in result
     ]
+    
+def porcentaje_medidores_uso():
+    with connection.cursor() as cursor:
+        cursor.callproc('sp_porcentaje_medidores_uso')
+        result = cursor.fetchall()
+    
+    # Asegúrate de que result no esté vacío
+    if not result:
+        return []
+    return [
+        {
+            'medidores_en_uso': row[0],  
+            'medidores_inactivos': row[1],  
+        }
+        for row in result
+    ]
+
+def total_asistente_eventos():
+    with connection.cursor() as cursor:
+        cursor.callproc('sp_total_asistentes_eventos')
+        result = cursor.fetchall()
+    
+    # Asegúrate de que result no esté vacío
+    if not result:
+        return []
+    return [
+        {
+            'nombre_te': row[0],  
+            'TotalSocios': row[1],
+            'fecha': row[2],
+        }
+        for row in result
+    ]

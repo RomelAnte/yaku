@@ -52,42 +52,22 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
                     KPI 6
                 </div>
-                <div class="card-body"><canvas id=""></canvas></div>
-            </div>  
+                <div class="card-body"><canvas id="estado_medidores"></canvas></div>
+            </div>            
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card mb-4">
                 <div class="card-header">
                     <i class="fas fa-chart-area me-1"></i>
                     KPI 7
                 </div>
-                <div class="card-body"><canvas id=""></canvas></div>
-            </div>            
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    KPI 8
-                </div>
-                <div class="card-body"><canvas id=""></canvas></div>
-            </div>            
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-chart-area me-1"></i>
-                    KPI 9
-                </div>
-                <div class="card-body"><canvas id=""></canvas></div>
+                <div class="card-body"><canvas id="total_asistente_eventos"></canvas></div>
             </div>            
         </div>
     </div>
@@ -248,8 +228,6 @@
             total.push({{ item.NumeroEventos }});
         {% endfor %}
 
-        console.log(nombre)
-
         var myChart = new Chart(ctx, {
             type: 'pie', // Tipo de gráfico de barras (pie,line,bar,radar)
             data: {
@@ -286,8 +264,6 @@
             total.push({{ item.Tipo }});
         {% endfor %}
 
-        console.log(nombre)
-
         var myChart = new Chart(ctx, {
             type: 'doughnut', // Tipo de gráfico de barras (pie,line,bar,radar)
             data: {
@@ -312,4 +288,107 @@
             }
         });
     </script>
+    <script>
+        var ctx = document.getElementById('estado_medidores').getContext('2d');
+    
+        // Preparar los datos para Chart.js
+        var uso = [];
+        var desuso = [];
+    
+        {% for item in porcentaje_medidores_uso %}
+            uso.push({{ item.medidores_en_uso }});
+            desuso.push({{ item.medidores_inactivos }});
+        {% endfor %}
+
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico de barras (pie,line,bar,radar)
+            data: {
+                title: 'Consumo de Agua Mesual',
+                labels: ['Estado'], 
+                datasets: [{
+                    label: 'En uso',
+                    data: uso,
+                    backgroundColor: '#4bc0c0',
+                    borderColor: '#4bc0c0',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Desuso',
+                    data: desuso,
+                    backgroundColor: '#f1c40f',
+                    borderColor: '#f1c40f',
+                    borderWidth: 1
+                }]
+            },
+            
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tipo de Socio',
+                    }
+                },
+                responsive: true,
+                interaction: {
+                  intersect: false,
+                },
+                scales: {
+                  x: {
+                    stacked: true,
+                  },
+                  y: {
+                    stacked: true
+                  }
+                }
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('total_asistente_eventos').getContext('2d');
+    
+        // Preparar los datos para Chart.js
+        var nombre = [];
+        var socios = [];
+        var fecha = [];
+    
+        {% for item in total_asistente_eventos %}
+            nombre.push('{{ item.nombre_te }}');
+            socios.push({{ item.TotalSocios }});
+            fecha.push('{{ item.fecha }}');
+        {% endfor %}    
+    
+        var myChart = new Chart(ctx, {
+            type: 'bar', // Tipo de gráfico de barras
+            data: {
+                title: 'Consumo de Agua Mensual',
+                labels: nombre, 
+                datasets: [{
+                    label: ['Asistencia a Eventos'],
+                    data: socios,
+                    backgroundColor: ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFD433', '#33FFD4'], // Se asegura de que el número de colores coincida con el número de barras
+                    borderColor: ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#FFD433', '#33FFD4'], // Igual para los bordes
+                    borderWidth: 1
+                }]
+            },
+            
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tipo de Socio',
+                    }
+                },
+                responsive: true,
+                scales: {
+                    x: {
+                        stacked: true,
+                    },
+                    y: {
+                        stacked: true
+                    }
+                }
+            }
+        });
+    </script>
+    
 {% endblock  %}
