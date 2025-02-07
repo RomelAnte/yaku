@@ -53,3 +53,35 @@ def total_consumo_mensual():
         }
         for row in result
     ]
+    
+def total_eventos_tipo():
+    with connection.cursor() as cursor:
+        cursor.callproc('total_eventos_tipo')
+        result = cursor.fetchall()
+        
+    # Asegúrate de que result no esté vacío
+    if not result:
+        return []
+    return [
+        {
+            'nombre_te': row[0],  
+            'NumeroEventos': row[1],  
+        }
+        for row in result
+    ]
+    
+def total_socios_tipo():
+    with connection.cursor() as cursor:
+        cursor.callproc('total_socios_tipo')
+        result = cursor.fetchall()
+    
+    # Asegúrate de que result no esté vacío
+    if not result:
+        return []
+    return [
+        {
+            'tipo_soc': row[0],  
+            'Tipo': row[1],  
+        }
+        for row in result
+    ]
