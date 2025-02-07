@@ -45,11 +45,13 @@ def total_consumo_mensual():
     if not result:
         return []
 
+    print(result)
+    
     return [
         {
             'mes': row[0],  
             'anio': row[1],  
-            'total_consumos': row[1],  
+            'total_consumos': row[2],  
         }
         for row in result
     ]
