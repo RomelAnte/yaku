@@ -68,7 +68,7 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'Aplicaciones', 'templates'),
             os.path.join(BASE_DIR, 'Aplicaciones', 'socios', 'templates')
-                 ],
+            ],
         
         'APP_DIRS': True,
         'OPTIONS': {
@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'yaku.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aplicaci_yaku3',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  # O la IP del servidor de MySQL
+        'NAME': 'yaku',
+        'USER': 'romel',
+        'PASSWORD': '1234',
+        'HOST': '127.0.0.1',  # O la IP del servidor de MySQL
         'PORT': '3306',  # Puerto de MySQL (3306 por defecto)
         'OPTIONS': {
             'charset': 'utf8mb4',  # Permite caracteres especiales
