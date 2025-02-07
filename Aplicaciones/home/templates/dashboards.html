@@ -134,17 +134,16 @@
     </script>
     <script>
         var ctx = document.getElementById('estado_lectura').getContext('2d');
-       
+        
         // Preparar los datos para Chart.js
         var estado = [];
         var cantidad = [];
-     
+        
         {% for item in estado_lectura %}
             estado.push("{{ item.estado_lec }}");
             cantidad.push("{{ item.cantidad }}");
         {% endfor %}
-    
-    
+
         var myChart = new Chart(ctx, {
             type: 'doughnut', // Tipo de gráfico de barras (pie,line,bar,radar)
             data: {
@@ -184,7 +183,56 @@
             }
         });
     </script>
-    <script>
 
+    <script>
+        var ctx = document.getElementById('total_consumo').getContext('2d');
+    
+        // Preparar los datos para Chart.js
+        var mes = [];
+        var total = [];
+    
+        {% for item in total_consumos %}
+            mes.push("{{ item.mes }}");
+            total.push(Number({{ item.total_consumos }}));
+        {% endfor %}
+
+        var myChart = new Chart(ctx, {
+            type: 'line', // Tipo de gráfico de barras (pie,line,bar,radar)
+            data: {
+                title: 'Consumo de Agua Mesual',
+                labels: mes, // Etiquetas del eje X (ACTIVO / INACTIVO)
+                datasets: [{
+                    label: 'Consumo de Agua Mesual',
+                    data: total,
+                    backgroundColor: '#4bc0c0',
+                    borderColor: '#4bc0c0',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Consumo de Agua Mesual',
+                    }
+                },
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Consumo total de agua por mes'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Estado'
+                        }
+                    }
+                }
+            }
+        });
     </script>
 {% endblock  %}
