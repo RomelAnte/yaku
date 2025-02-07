@@ -70,7 +70,7 @@ BEGIN
 	on te.id_te = e.fk_id_te 
 	group by(te.nombre_te);
 END //
-DELIMITER ;*/
+DELIMITER ;
 
 -- Total de socios por su tipo
 DELIMITER //
@@ -79,4 +79,29 @@ BEGIN
 	select tipo_soc, count(tipo_soc) as Tipo from socio  
 	group by tipo_soc;
 END //
+DELIMITER ;
+
+
+-- Cantidad de medidores en uso comparado con los no asignados
+DELIMITER $$  
+CREATE PROCEDURE sp_porcentaje_medidores_uso()  
+BEGIN  
+	SELECT  
+        (SELECT COUNT(*) FROM medidor WHERE estado_med = 'ACTIVO') AS medidores_en_uso,  
+        (SELECT COUNT(*) FROM medidor WHERE estado_med = 'INACTIVO') AS medidores_inactivos; 
+END $$  
+DELIMITER ;*/
+
+-- Numero de socios asistentes a los eventos
+DELIMITER $$  
+CREATE PROCEDURE sp_total_asistentes_eventos()  
+BEGIN  
+	select te.nombre_te, count(a.fk_id_soc) as TotalSocios, e.fecha_hora_eve from asistencia a 
+	inner join evento e 
+	on a.fk_id_eve = e.id_eve 
+	inner join tipo_evento te 
+	on te.id_te = e.fk_id_te 
+	where a.tipo_asi <> 'FALTA' and a.tipo_asi <> 'REPRESENTANTE'
+	group by e.id_eve;
+END $$  
 DELIMITER ;
