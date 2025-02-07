@@ -44,8 +44,6 @@ def total_consumo_mensual():
     # Asegúrate de que result no esté vacío
     if not result:
         return []
-
-    print(result)
     
     return [
         {
