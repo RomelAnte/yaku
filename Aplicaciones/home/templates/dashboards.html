@@ -47,7 +47,7 @@
                     <i class="fas fa-chart-area me-1"></i>
                     KPI 5
                 </div>
-                <div class="card-body"><canvas id="total_consumo"></canvas></div>
+                <div class="card-body"><canvas id="tipo_socio"></canvas></div>
             </div>    
         </div>
     </div>
@@ -268,6 +268,44 @@
                     title: {
                         display: true,
                         text: 'Consumo de Agua Mesual',
+                    }
+                },
+                responsive: true,
+            }
+        });
+    </script>
+    <script>
+        var ctx = document.getElementById('tipo_socio').getContext('2d');
+    
+        // Preparar los datos para Chart.js
+        var nombre = [];
+        var total = [];
+    
+        {% for item in total_socios_tipo %}
+            nombre.push("{{ item.tipo_soc }}");
+            total.push({{ item.Tipo }});
+        {% endfor %}
+
+        console.log(nombre)
+
+        var myChart = new Chart(ctx, {
+            type: 'doughnut', // Tipo de gráfico de barras (pie,line,bar,radar)
+            data: {
+                title: 'Consumo de Agua Mesual',
+                labels: nombre, // Etiquetas del eje X (ACTIVO / INACTIVO)
+                datasets: [{
+                    label: 'Consumo de Agua Mesual',
+                    data: total,
+                    backgroundColor: ['#4bc0c0', '#f1c40f', '#4CAF50'],
+                    borderColor: ['#4bc0c0', '#f1c40f', '#4CAF50'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Tipo de Socio',
                     }
                 },
                 responsive: true,
